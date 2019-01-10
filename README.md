@@ -64,7 +64,7 @@ Sur l'arduino relais, brancher le module Xbee sur l'emplacement numéro 2. Il s'
 
 2 - Importation des codes 
 
-Sur cet arduino le code principal sera : Arduino_reception.ino
+Sur cet arduino le code principal sera : Arduino_reception.ino qui se trouve dans le dossier "object-code" du git.
 Nous allons également avoir besoin des librairies suivantes : mrf24j.h et SPI.h, elles ont normalement déjà été importée plus tôt dans le tutoriel.
 
 ---------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
