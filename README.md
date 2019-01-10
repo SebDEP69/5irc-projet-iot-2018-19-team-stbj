@@ -21,13 +21,14 @@ Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces
 
 ------------------------Arduino Reception (Récupération des données et transmission vers Arduino 2)---------------------------
 
+
 1.	Arduino émission
 
 Sur l’arduino seront positionnés différents capteurs afin de transmettre au second arduino les données.
 
 Réalisez le branchement des capteurs sur le premier arduino qui sera destiné à la récupération des données émises par les capteurs et à la transmission à l’arduino 2 par une liaison Xbee. Pour se faire : brancher les modules dans le bon sens afin que les pins du bus correspondent (ex : Ground GND du module sur la patte GND de l’arduino). 
 
-Pour effectuer la récupération des données et la transmission de celles-ci nous allons utiliser l’IDE Arduino. Il est possible de le télécharger très rapidement. (Si vous travaillez sur une machine virtuelle, les arduinos doivent être branchés avant démarrage de la machine physique. Ensuite si vous utilisez Virtualbox, il faut autoriser les périphériques USB dans « Périphériques  USB »).
+Pour effectuer la récupération des données et la transmission de celles-ci nous allons utiliser l’IDE Arduino. Il est possible de le télécharger très rapidement. (Si vous travaillez sur une machine virtuelle, les arduinos doivent être branchés avant démarrage de la machine physique. Ensuite si vous utilisez Virtualbox, il faut autoriser les périphériques USB dans « Périphériques > USB »).
 
 Télécharger ensuite le code « Arduino_envoi.ino » dans le dossier object-code du GIT.
 Télécharger également les librairies :
@@ -41,7 +42,7 @@ Télécharger également les librairies :
 
 Dans le fichier Arduino_envoi qui est le code principal pour l’envoi des données, de nombreuses librairies sont importées. Il faut également le faire dans l’IDE afin de créer un schéma correct et complet. Pour se faire cliquer sur :
 
-Croquis  importer bibliothèque  Add library  Ajouter le fichier ZIP à importer
+Croquis > importer bibliothèque > Add library > Ajouter le fichier ZIP à importer
 
 Suite à cela, un dossier « Sketchbook » est créé dans votre répertoire personnel contenant toutes les librairies. 
 
