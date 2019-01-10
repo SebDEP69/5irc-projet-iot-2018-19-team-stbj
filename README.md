@@ -163,13 +163,15 @@ Deux terminal s'ouvrent alors. Si les ports sont montés, vous pourrez écrire d
 E) Connexion avec l'Arduino relais 
 
 Nous allons maintenant connecter le BeagleBone à l'Arduino qui joue le rôle de relais (qui contient le module ZigBee ne réception). 
-Pour cela, il faut connecter le pin TX P9.21 sur le sérial 3 port PJ1/TX3 de l'Arduino et le RX P9.22 sur le sérial 3 port PJ0.RX3 de l'Arduino (cf interco.jpg dans le dossier "Images"). 
+Pour cela, il faut connecter le pin TX P9.21 sur le sérial 3 port PJ1/TX3 de l'Arduino et le RX P9.22 sur le sérial 3 port PJ0.RX3 de l'Arduino (cf Laison_série_ArduinoRelais_BeagleBone.jpg dans le dossier "Images"). 
 
 F) StartGateway 
 
 Pour initier la communication entre le BeagleBone et le cloud, nous avons mis à disposition le fichier start-gateway.py.
 Ce fichier se trouve dans le dossier gateway-code. 
 Les seules choses à changer sont la variable "TOKEN" (cf partie suivante) correspondant à votre compte Ubidots. 
+
+Pour lancer le script, allez dans le dossier gateway-code et tapez "python start-gateway.py".
 
 
 ----------------------------------------------Cloud --> Ubidots---------------------------------------------------------
