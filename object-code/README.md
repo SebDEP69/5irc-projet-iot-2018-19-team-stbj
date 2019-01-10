@@ -4,4 +4,4 @@ Dossier ou se trouvent toutes les sources ainsi que les librairies pour l'arduin
 
 Le code principal est : Arduino_reception.ino
 
-Les fichiers zip sont les librairies à ajouter à l'IDE arduino sous : Croquis > Importer une bibliothèque > Add library# Configuration Arduino
+Les fichiers zip sont les librairies à ajouter à l'IDE arduino sous : Croquis > Importer une bibliothèque > Add library
