@@ -32,12 +32,10 @@ Pour effectuer la récupération des données et la transmission de celles-ci no
 
 Télécharger ensuite le code « Arduino_envoi.ino » dans le dossier object-code du GIT.
 Télécharger également les librairies :
--	« Adafruit_GPS.h » (GPS)
--	« MQ135.h » (CO2)
--	« mrf24j.h » (Liaison Xbee entre les 2 arduinos)
--	« SPI.h » (utilisé par mrf24j)
--	« SoftwareSerial.h » (utilisé par Adafruit)
--	« structureGPS.h » (librairie crée par nous-même pour l’implémentation du code) 
+-	« GPS3.zip » (GPS)
+-	« MQ135.zip » (CO2)
+-	« Zigbee.zip » (Liaison Xbee entre les 2 arduinos)
+-	« structureGPS.zip » (librairie crée par nous-même pour l’implémentation du code) 
 
 
 Dans le fichier Arduino_envoi qui est le code principal pour l’envoi des données, de nombreuses librairies sont importées. Il faut également le faire dans l’IDE afin de créer un schéma correct et complet. Pour se faire cliquer sur :
