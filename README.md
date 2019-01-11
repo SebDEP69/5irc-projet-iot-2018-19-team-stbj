@@ -8,7 +8,7 @@ Ces données seront alors envoyées et mise en forme pour analyse et des actions
 ## Description du Projet
 
 Voici l’organisation de notre projet cette semaine, pour rappel, les trois principales composantes d'un système IoT sont :
-Capteurs --> Passerelles --> Cloud
+**Capteurs --> Passerelles --> Cloud**
 Dans le rôle de capteurs, nous aurons un capteur de CO2 et une balise GPS connectés sur un Arduino. Ce dernier transmettra ces données via ZigBee sur un autre Arduino qui fera la passerelle vers notre BeagleBone. Le BBB se chargera de faire la passerelle vers Ubidots qui est la plateforme Cloud que nous avons choisit d'utiliser.
 
 ### Matériel utilisé 
@@ -22,7 +22,7 @@ Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces
 --------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
 
 
-1.	Arduino émission
+**1.	Arduino émission**
 
 Sur l’arduino seront positionnés différents capteurs afin de transmettre au second arduino les données.
 
@@ -54,20 +54,20 @@ Ensuite dans le code il faut adapter les lignes, notamment pour l’initialisati
 Le but de cette arduino est de faire le relais entre l'arduino qui va récupérer les données des capteurs et le beaglebone, qui va lui se charger de les envoyer au cloud.
 Sur cet Arduino sera donc positionné deux partie. La partie module Xbee, ainsi que la partie liaison série avec le beaglebone.
 
-1 - Connexion du module Xbee
+**1 - Connexion du module Xbee**
 
 Le module Xbee va recevoir les données de l'autre arduino en mode sans fils. Ces données seront ensuite envoyées en liaison série au beaglebone.
 
 Sur l'arduino relais, brancher le module Xbee sur l'emplacement numéro 2. Il s'agit de l'emplacement de la liaison Serial qui va communiquer avec l'arduino, nous avons choisit la 2 arbitrairement. Bien faire attention de brancher le module dans le bon sens (GND module sur GND arduino, +3V module sur +3V arduino, etc ...).
 
-2 - Importation des codes 
+**2 - Importation des codes**
 
 Sur cet arduino le code principal sera : Arduino_reception.ino qui se trouve dans le dossier "object-code" du git.
 Nous allons également avoir besoin des librairies suivantes : mrf24j.h et SPI.h, elles ont normalement déjà été importée plus tôt dans le tutoriel.
 
 ---------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
 
-1 - Connexion au BeagleBone 
+**1 - Connexion au BeagleBone** 
 
 Premièrement, téléchargez la version Debian 8.6 (disponible à l'adresse http://beagleboard.org/latest-images).
 
@@ -91,7 +91,7 @@ Password par défaut : temppwd
 
 Vous voilà connecté au BBB. 
 
-2 - Configuration du BBB 
+**2 - Configuration du BBB**
 
 A) Vérification de la connexion Internet 
 Pour l'instant, votre BeagleBone n'est pas connecté à Internet (test ping 8.8.8.8 failed). Pour configurer la connexion Internet, je vous conseil de suivre ce tutoriel : https://www.digikey.com/en/maker/blogs/how-to-connect-a-beaglebone-black-to-the-internet-using-usb 
