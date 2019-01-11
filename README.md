@@ -19,7 +19,7 @@ Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces
 
 # Procédure de mise en place de votre chaîne IoT
 
-=============================================================
+====================================================================================
 
 ## Arduino Envoi (Récupération des données et transmission vers Arduino 2)
 
@@ -52,7 +52,7 @@ Suite à cela, un dossier « Sketchbook » est créé dans votre répertoire per
 
 Ensuite dans le code il faut adapter les lignes, notamment pour l’initialisation des variables. Il faut changer le nom de la Serial si vos modules ne sont pas branchés sur les mêmes que nous (voir dossier images : arduino_envoi). Dans notre cas il s’agit de : Serial3 pour le GPS / Serial 2 pour le CO2 / Serial1 pour le module Xbee (connexion Arduino réception). Il est possible de les modifier et d’utiliser des pins différents.
 
-=============================================================
+====================================================================================
 
 ### Arduino relais
 
@@ -71,7 +71,7 @@ Sur l'arduino relais, brancher le module Xbee sur l'emplacement numéro 2. Il s'
 Sur cet arduino le code principal sera : Arduino_reception.ino qui se trouve dans le dossier "object-code" du git.
 Nous allons également avoir besoin des librairies suivantes : mrf24j.h et SPI.h, elles ont normalement déjà été importée plus tôt dans le tutoriel.
 
-=============================================================
+====================================================================================
 
 ## Passerelle --> BeagleBone
 
@@ -138,11 +138,11 @@ Vérifier que les slots sont identifiés:
 
 ```debian@beaglebone:/sys/devices/platform/bone_capemgr# cat slots```
 
-*``` 0: PF----  -1 ```
-*```1: PF----  -1 ```
-*```4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1```
-*```5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2```
- 
+```0: PF----  -1 
+   1: PF----  -1 
+   4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1
+   5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2
+```
 Vérifiez que les ttyO sont identifiés:
 ```
 debian@beaglebone:/dev# ls ttyO*
@@ -183,7 +183,7 @@ Pour initier la communication entre le BeagleBone et le cloud, nous avons mis à
 Ce fichier se trouve dans le dossier gateway-code. 
 Les seules choses à changer sont la variable **"TOKEN"** (cf partie suivante) correspondant à votre compte Ubidots. 
 
-=============================================================
+====================================================================================
 
 ## Cloud --> Ubidots
 
