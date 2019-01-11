@@ -11,15 +11,15 @@ Voici l’organisation de notre projet cette semaine, pour rappel, les trois pri
 **Capteurs --> Passerelles --> Cloud**
 Dans le rôle de capteurs, nous aurons un capteur de CO2 et une balise GPS connectés sur un Arduino. Ce dernier transmettra ces données via ZigBee sur un autre Arduino qui fera la passerelle vers notre BeagleBone. Le BBB se chargera de faire la passerelle vers Ubidots qui est la plateforme Cloud que nous avons choisit d'utiliser.
 
-### Matériel utilisé 
+## Matériel utilisé 
 
 Le capteur C02 utilisé pour ce projet est le MQ-135 sensor. 
 La balise GPS est une GPS3 click. 
 Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces derniers est qu'ils possèdent plusieurs sérial qui permettent la connexion de trois capteurs par Arduino. 
 
-## Procédure de mise en place de votre chaîne IoT
+# Procédure de mise en place de votre chaîne IoT
 
---------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
+##--------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
 
 
 **1.	Arduino émission**
@@ -48,7 +48,7 @@ Ensuite dans le code il faut adapter les lignes, notamment pour l’initialisati
 
 
 
------------------------------------------------Arduino relais-------------------------------------------------------
+###-----------------------------------------------Arduino relais-------------------------------------------------------
 
 
 Le but de cette arduino est de faire le relais entre l'arduino qui va récupérer les données des capteurs et le beaglebone, qui va lui se charger de les envoyer au cloud.
@@ -65,7 +65,7 @@ Sur l'arduino relais, brancher le module Xbee sur l'emplacement numéro 2. Il s'
 Sur cet arduino le code principal sera : Arduino_reception.ino qui se trouve dans le dossier "object-code" du git.
 Nous allons également avoir besoin des librairies suivantes : mrf24j.h et SPI.h, elles ont normalement déjà été importée plus tôt dans le tutoriel.
 
----------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
+##---------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
 
 **1 - Connexion au BeagleBone** 
 
@@ -99,13 +99,13 @@ Pour l'instant, votre BeagleBone n'est pas connecté à Internet (test ping 8.8.
 Deux choses sont importantes : 
 - Il faut ajouter une route par défaut pour dire au BBB par où sortir vers Internet : 
 
-"sudo /sbin/route add default gw 192.168.7.1" (ou "sudo /sbin/route add default gw 192.168.6.1" pour MAC OS/Linux) 
+```"sudo /sbin/route add default gw 192.168.7.1" (ou "sudo /sbin/route add default gw 192.168.6.1" pour MAC OS/Linux)``` 
 
 - Dans ce cas là, la connexion est établie mais le DNS ne marche pas. Avec cette commande, vous mettez à jour le DNS dans resolv.conf. 
 
-"echo "nameserver 8.8.8.8" >> /etc/resolv.conf" 
+```"echo "nameserver 8.8.8.8" >> /etc/resolv.conf"``` 
 et sur l'interface Ethernet :  
-"sudo echo "dns-nameservers 8.8.8.8" >> /etc/network/interfaces"
+```"sudo echo "dns-nameservers 8.8.8.8" >> /etc/network/interfaces"```
 
 NB : pensez bien à configurer le DNS sur votre carte Ethernet dans votre PC (ajoutez 8.8.8.8). 
 
@@ -116,10 +116,10 @@ B) Configuration des pins
 Pour commencer, nous avons besoin  d'activer les ports UART. 
 Pour cela, éditer le fichier /boot/uEnv.txt et ajoutez la ligne suivante :
 
-"cape_enable=bone_capemgr.enable_partno=BB-UART1,BB-UART2" 
+```"cape_enable=bone_capemgr.enable_partno=BB-UART1,BB-UART2"``` 
 
 et supprimez : 
-"cape_universal=enable" 
+```"cape_universal=enable"```
 
 et redémarrez votre BBB : ce fichier est un fichier système, le BBB ne le prendra en compte que lors du rédémarrage. 
 NB : Vérifiez que la connexion internet est toujours présente. Dans le cas contraire, répéter les actions du 1-. 
@@ -127,15 +127,16 @@ NB : Vérifiez que la connexion internet est toujours présente. Dans le cas con
 Vérifications :
 
 Vérifier que les slots sont identifiés:
-debian@beaglebone:/sys/devices/platform/bone_capemgr# cat slots
+```debian@beaglebone:/sys/devices/platform/bone_capemgr# cat slots```
  0: PF----  -1 
  1: PF----  -1 
  4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1
  5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2
  
 Vérifiez que les ttyO sont identifiés:
-
+```
 debian@beaglebone:/dev# ls ttyO*
+```
 /dev/ttyO0 /dev/ttyO1 /dev/ttyO2 
 
 Les ports sont maintenant prêts à être utilisés. Dans notre cas, nous utiliserons que les UART1 et UART2. 
@@ -148,13 +149,16 @@ Nous allons connecter :  UART1 TXD (P9_24) à UART2 RXD (P9_22) et UART2 TXD (P9
 D) Vérification avec Minicom
 
 Ensuite, installez minicom : 
-
+```
 sudo apt-get update 
 sudo apt-get install minicom
+```
 
 En root : 
+```
 minicom -D /dev/ttyO1 -b 9600 
 minicom -D /dev/ttyO2 -b 9600
+```
 
 Deux terminal s'ouvrent alors. Si les ports sont montés, vous pourrez écrire dans le premier et cette écriture se répercutera dans le second. 
 
@@ -170,7 +174,7 @@ Ce fichier se trouve dans le dossier gateway-code.
 Les seules choses à changer sont la variable "TOKEN" (cf partie suivante) correspondant à votre compte Ubidots. 
 
 
-----------------------------------------------Cloud --> Ubidots---------------------------------------------------------
+##----------------------------------------------Cloud --> Ubidots---------------------------------------------------------
 
 Nous allons maintenant afficher les données sur le Cloud. 
 
