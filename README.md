@@ -19,7 +19,7 @@ Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces
 
 ## Procédure de mise en place de votre chaîne IoT
 
-------------------------Arduino Reception (Récupération des données et transmission vers Arduino 2)---------------------------
+--------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
 
 
 1.	Arduino émission
