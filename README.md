@@ -19,16 +19,20 @@ Les Arduino utilisés sont des Arduino Mega 2560 click shield. L'avantage de ces
 
 # Procédure de mise en place de votre chaîne IoT
 
-##--------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
+## --------------------Arduino Envoi (Récupération des données et transmission vers Arduino 2)-----------------------
 
 
 **1.	Arduino émission**
 
-Sur l’arduino seront positionnés différents capteurs afin de transmettre au second arduino les données.
+Sur l’Arduino seront positionnés différents capteurs afin de transmettre au second Arduino les données.
 
-Réalisez le branchement des capteurs sur le premier arduino qui sera destiné à la récupération des données émises par les capteurs et à la transmission à l’arduino 2 par une liaison Xbee. Pour se faire : brancher les modules dans le bon sens afin que les pins du bus correspondent (ex : Ground GND du module sur la patte GND de l’arduino). 
+Réalisez le branchement des capteurs sur le premier Arduino qui sera destiné à la récupération des données émises par les capteurs et à la transmission à l’Arduino 2 (par une liaison Zigbee). Pour se faire : brancher les modules dans le bon sens afin que les pins du bus correspondent (ex : Ground GND du module sur la patte GND de l’arduino). 
 
-Pour effectuer la récupération des données et la transmission de celles-ci nous allons utiliser l’IDE Arduino. Il est possible de le télécharger très rapidement. (Si vous travaillez sur une machine virtuelle, les arduinos doivent être branchés avant démarrage de la machine physique. Ensuite si vous utilisez Virtualbox, il faut autoriser les périphériques USB dans « Périphériques > USB »).
+Pour effectuer la récupération des données et la transmission de celles-ci nous allons utiliser l’IDE Arduino. Il est possible de le télécharger très rapidement. (Si vous travaillez sur une machine virtuelle, les arduinos doivent être branchés avant démarrage de la machine physique. 
+
+Vous pouvez l'installer en faisant : ``` sudo apt-get install arduino ```
+
+Ensuite si vous utilisez Virtualbox, il faut autoriser les périphériques USB dans **« Périphériques > USB »)**.
 
 Télécharger ensuite le code « Arduino_envoi.ino » dans le dossier object-code du GIT.
 Télécharger également les librairies :
@@ -38,17 +42,16 @@ Télécharger également les librairies :
 -	« structureGPS.zip » (librairie crée par nous-même pour l’implémentation du code) 
 
 
-Dans le fichier Arduino_envoi qui est le code principal pour l’envoi des données, de nombreuses librairies sont importées. Il faut également le faire dans l’IDE afin de créer un schéma correct et complet. Pour se faire cliquer sur :
+Dans le fichier **Arduino_envoi** qui est le code principal pour l’envoi des données, de nombreuses librairies sont importées. Il faut également le faire dans l’IDE afin de créer un schéma correct et complet. Pour se faire cliquer sur :
 
-Croquis > importer bibliothèque > Add library > Ajouter le fichier ZIP à importer
+```Croquis > importer bibliothèque > Add library > Ajouter le fichier ZIP à importer```
 
 Suite à cela, un dossier « Sketchbook » est créé dans votre répertoire personnel contenant toutes les librairies. 
 
 Ensuite dans le code il faut adapter les lignes, notamment pour l’initialisation des variables. Il faut changer le nom de la Serial si vos modules ne sont pas branchés sur les mêmes que nous (voir dossier images : arduino_envoi). Dans notre cas il s’agit de : Serial3 pour le GPS / Serial 2 pour le CO2 / Serial1 pour le module Xbee (connexion Arduino réception). Il est possible de les modifier et d’utiliser des pins différents.
 
 
-
-###-----------------------------------------------Arduino relais-------------------------------------------------------
+### -----------------------------------------------Arduino relais-------------------------------------------------------
 
 
 Le but de cette arduino est de faire le relais entre l'arduino qui va récupérer les données des capteurs et le beaglebone, qui va lui se charger de les envoyer au cloud.
@@ -65,11 +68,11 @@ Sur l'arduino relais, brancher le module Xbee sur l'emplacement numéro 2. Il s'
 Sur cet arduino le code principal sera : Arduino_reception.ino qui se trouve dans le dossier "object-code" du git.
 Nous allons également avoir besoin des librairies suivantes : mrf24j.h et SPI.h, elles ont normalement déjà été importée plus tôt dans le tutoriel.
 
-##---------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
+## ---------------------------------------------Passerelle --> BeagleBone--------------------------------------------------- 
 
 **1 - Connexion au BeagleBone** 
 
-Premièrement, téléchargez la version Debian 8.6 (disponible à l'adresse http://beagleboard.org/latest-images).
+Premièrement, téléchargez la version **Debian 8.6** (disponible à l'adresse http://beagleboard.org/latest-images).
 
 Flashez votre carte SD avec l'image téléchargée précédemment. Pour cela, vous pouvez utilisé Etcher qui est disponible sur tous les OS (https://www.balena.io/etcher/).
 
@@ -80,14 +83,14 @@ Vous pouvez maintenant connecté votre Beaglebone en USB sur votre ordinateur. A
 
 Activez le partage de votre connexion internet sur cette nouvelle carte, et configurez son IP pour qu'elle soit dans le meme réseau que votre BeagleBone. 
 
-Petit rappel du tutoriel : 
+*Petit rappel du tutoriel *: 
 
 Sur MACOS X, Linux, le BeagleBone prend l'adresse IP : : 192.168.6.2 et IP de votre carte réseau : 192.168.6.1
 Sur Windows, le BBB prend l'adresse IP : 192.168.7.2 et IP de votre carte réseau : 192.168.7.1
 
 En SSH, connectez vous sur le BBB. 
-Login : Debian 
-Password par défaut : temppwd 
+```Login : Debian ```
+```Password par défaut : temppwd``` 
 
 Vous voilà connecté au BBB. 
 
@@ -127,17 +130,18 @@ NB : Vérifiez que la connexion internet est toujours présente. Dans le cas con
 Vérifications :
 
 Vérifier que les slots sont identifiés:
+
 ```debian@beaglebone:/sys/devices/platform/bone_capemgr# cat slots```
- 0: PF----  -1 
- 1: PF----  -1 
- 4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1
- 5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2
+``` 0: PF----  -1 ```
+```1: PF----  -1 ```
+```4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1```
+```5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2```
  
 Vérifiez que les ttyO sont identifiés:
 ```
 debian@beaglebone:/dev# ls ttyO*
 ```
-/dev/ttyO0 /dev/ttyO1 /dev/ttyO2 
+ ==> /dev/ttyO0 /dev/ttyO1 /dev/ttyO2 
 
 Les ports sont maintenant prêts à être utilisés. Dans notre cas, nous utiliserons que les UART1 et UART2. 
 
@@ -165,16 +169,16 @@ Deux terminal s'ouvrent alors. Si les ports sont montés, vous pourrez écrire d
 E) Connexion avec l'Arduino relais 
 
 Nous allons maintenant connecter le BeagleBone à l'Arduino qui joue le rôle de relais (qui contient le module ZigBee ne réception). 
-Pour cela, il faut connecter le pin TX P9.21 sur le sérial 3 port PJ1/TX3 de l'Arduino et le RX P9.22 sur le sérial 3 port PJ0.RX3 de l'Arduino (cf interco.jpg dans le dossier "Images"). 
+Pour cela, il faut connecter le pin **TX P9.21** sur la **sérial 3 port PJ1/TX3** de l'Arduino et le **RX P9.22** sur la **sérial 3 port PJ0.RX3** de l'Arduino (cf interco.jpg dans le dossier "Images"). 
 
 F) StartGateway 
 
 Pour initier la communication entre le BeagleBone et le cloud, nous avons mis à disposition le fichier start-gateway.py.
 Ce fichier se trouve dans le dossier gateway-code. 
-Les seules choses à changer sont la variable "TOKEN" (cf partie suivante) correspondant à votre compte Ubidots. 
+Les seules choses à changer sont la variable **"TOKEN"** (cf partie suivante) correspondant à votre compte Ubidots. 
 
 
-##----------------------------------------------Cloud --> Ubidots---------------------------------------------------------
+## ----------------------------------------------Cloud --> Ubidots---------------------------------------------------------
 
 Nous allons maintenant afficher les données sur le Cloud. 
 
