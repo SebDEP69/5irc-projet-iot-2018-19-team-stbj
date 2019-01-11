@@ -184,6 +184,9 @@ Pour initier la communication entre le BeagleBone et le cloud, nous avons mis à
 Ce fichier se trouve dans le dossier gateway-code. 
 Les seules choses à changer sont la variable **"TOKEN"** (cf partie suivante) correspondant à votre compte Ubidots. 
 
+Lancez le script python : 
+``` python ./gateway-code/start-gateway.py ```
+
 ====================================================================================
 
 ## Cloud --> Ubidots
