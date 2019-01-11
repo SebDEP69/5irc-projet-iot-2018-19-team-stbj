@@ -137,12 +137,13 @@ Vérifications :
 Vérifier que les slots sont identifiés:
 
 ```debian@beaglebone:/sys/devices/platform/bone_capemgr# cat slots```
-
-```0: PF----  -1 
+```
+   0: PF----  -1 
    1: PF----  -1 
    4: P-O-L-   0 Override Board Name,00A0,Override Manuf,BB-UART1
    5: P-O-L-   1 Override Board Name,00A0,Override Manuf,BB-UART2
 ```
+
 Vérifiez que les ttyO sont identifiés:
 ```
 debian@beaglebone:/dev# ls ttyO*
