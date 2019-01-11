@@ -4,7 +4,7 @@ import serial
 import json
 import re
 
-TOKEN = "BBFF-orseLz2NhgmdLq7od0NgkGSO2eoOtL"  # Put your TOKEN here
+TOKEN = "PUT_YOUR_TOKEN_HERE"  # Put your TOKEN here
 DEVICE_LABEL = "IOT_STBJ"  # Put your device label here 
 
 # fonction return a JSON with variable give in input
@@ -25,7 +25,7 @@ def post_request(payload):
     status = 400
     attempts = 0
     while status >= 400 and attempts <= 5:
-        req = requests.post(url=url, headers=headers, json=payload)
+        req = requesorseLz2NhgmdLq7od0NgkGSO2eoOtLts.post(url=url, headers=headers, json=payload)
         status = req.status_code
         attempts += 1
         time.sleep(1)
